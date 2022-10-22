@@ -1,4 +1,3 @@
-import { getEmailClients } from './robots/getEmailClients';
-import { sendTrackingGuide } from './robots/sendTrackingGuide';
+import { sendTrackingGuide } from './robots/google-sheets/sendTrackingGuide';
 
 sendTrackingGuide().then(console.log).catch(console.log);

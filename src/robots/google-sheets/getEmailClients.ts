@@ -1,4 +1,4 @@
-import { currentSheet } from './currentSheet';
+import { currentSheet } from '../../settings/currentSheet';
 
 const getEmailClients = async () => {
   let emails = await currentSheet.get({
