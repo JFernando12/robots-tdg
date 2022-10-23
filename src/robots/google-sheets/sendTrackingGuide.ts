@@ -1,13 +1,13 @@
-import { ValueInputOption } from "../../interfaces/ValueInputOption";
-import { currentSheet } from "../../settings/currentSheet";
-import { isGuideCreated, isGuideSentWhatsapp } from "../../settings/checks";
-import { ValuesGuideSentWhatsapp } from "../../interfaces/ValueChecks";
+import { ValueInputOption } from '../../interfaces/ValueInputOption';
+import { currentSheet } from '../../settings/currentSheet';
+import { isGuideCreated, isGuideSentWhatsapp } from '../../settings/checks';
+import { ValuesGuideSentWhatsapp } from '../../interfaces/ValueChecks';
 
 const getData = async () => {
   let data = await currentSheet.get({
-    nombre: "prueba",
-    celdaInicio: "A2",
-    celdaFinal: "H1000",
+    nombre: 'prueba',
+    celdaInicio: 'A2',
+    celdaFinal: 'H1000',
   });
 
   data = data
@@ -32,7 +32,7 @@ const sendTrackingGuide = async () => {
     const whatsapp = order[PosGuide.whatsapp];
     const orderId = order[PosGuide.orderId];
 
-    const acumNotes = "";
+    const acumNotes = '';
     try {
       if (!isGuideSentWhatsapp(guideSentWhatsapp)) {
         order[PosGuide.guideSentWhatsapp] = ValuesGuideSentWhatsapp.true;
@@ -50,14 +50,14 @@ const sendTrackingGuide = async () => {
   ]);
 
   if (!listSent) {
-    throw new Error("No hay nada para actualizar");
+    throw new Error('No hay nada para actualizar');
   }
 
   // Update sheet
   await currentSheet.update(
     {
-      nombre: "prueba",
-      celdaInicio: "F2",
+      nombre: 'prueba',
+      celdaInicio: 'F2',
     },
     listSent,
     ValueInputOption.USER_ENTERED
