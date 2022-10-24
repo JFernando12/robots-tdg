@@ -1,3 +1,2 @@
-2022/10/24-12:43:47.910 4d90 Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Platform Notifications/MANIFEST-000001
-2022/10/24-12:43:47.910 4d90 Recovering log #3
-2022/10/24-12:43:47.910 4d90 Reusing old log /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Platform Notifications/000003.log 
+2022/10/24-13:43:58.701 54ad Creating DB /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Platform Notifications since it was missing.
+2022/10/24-13:43:58.759 54ad Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Platform Notifications/MANIFEST-000001

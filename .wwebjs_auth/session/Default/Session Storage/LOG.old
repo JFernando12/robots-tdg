@@ -1,3 +1,2 @@
-2022/10/24-12:43:48.173 4d8e Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Session Storage/MANIFEST-000001
-2022/10/24-12:43:48.173 4d8e Recovering log #3
-2022/10/24-12:43:48.173 4d8e Reusing old log /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Session Storage/000003.log 
+2022/10/24-13:43:41.228 540e Creating DB /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Session Storage since it was missing.
+2022/10/24-13:43:41.250 540e Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/Session Storage/MANIFEST-000001
