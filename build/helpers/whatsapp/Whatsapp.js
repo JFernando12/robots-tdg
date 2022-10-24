@@ -40,7 +40,9 @@ class Whatsapp {
             if (this.conexionStatus) {
                 resolve();
             }
+            console.log('Inciando whats');
             this.client.initialize();
+            console.log('Se incio whats');
             this.client.on('qr', (qr) => {
                 qrcode_terminal_1.default.generate(qr, { small: true });
             });
