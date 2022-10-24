@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  robots:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: robots-tdg
+    container_name: robots-tdg
+    command: ['npm', 'run', 'start', '/bin/sh']
