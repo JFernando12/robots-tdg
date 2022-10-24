@@ -1,12 +1,14 @@
-2022/10/24-13:43:42.647 5408 Creating DB /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb since it was missing.
-2022/10/24-13:43:42.670 5408 Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2022/10/24-13:43:56.639 5466 Level-0 table #5: started
-2022/10/24-13:43:56.707 5466 Level-0 table #5: 1153688 bytes OK
-2022/10/24-13:43:56.718 5466 Delete type=0 #3
-2022/10/24-13:44:02.380 5408 Level-0 table #7: started
-2022/10/24-13:44:02.463 5408 Level-0 table #7: 1073222 bytes OK
-2022/10/24-13:44:02.470 5408 Delete type=0 #4
-2022/10/24-13:44:02.514 540a Compacting 1@1 + 1@2 files
-2022/10/24-13:44:02.622 540a Generated table #8@1: 19731 keys, 1204857 bytes
-2022/10/24-13:44:02.622 540a Compacted 1@1 + 1@2 files => 1204857 bytes
-2022/10/24-13:44:02.630 540a compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/10/24-13:44:19.729 5541 Reusing MANIFEST /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/10/24-13:44:19.729 5541 Recovering log #6
+2022/10/24-13:44:19.775 5541 Reusing old log /home/jfernando/bigProjects/robots-tdg/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000006.log 
+2022/10/24-13:44:19.775 5541 Delete type=2 #5
+2022/10/24-13:44:19.775 5541 Delete type=2 #7
+2022/10/24-13:44:35.308 553e Level-0 table #11: started
+2022/10/24-13:44:35.379 553e Level-0 table #11: 1106365 bytes OK
+2022/10/24-13:44:35.388 553e Delete type=0 #6
+2022/10/24-13:44:35.420 55d6 Compacting 1@1 + 1@2 files
+2022/10/24-13:44:35.520 55d6 Generated table #12@1: 30274 keys, 1667447 bytes
+2022/10/24-13:44:35.520 55d6 Compacted 1@1 + 1@2 files => 1667447 bytes
+2022/10/24-13:44:35.527 55d6 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/10/24-13:44:35.527 55d6 Delete type=2 #11
+2022/10/24-13:44:35.527 55d6 Delete type=2 #8

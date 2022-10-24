@@ -21,7 +21,16 @@ class Whatsapp {
         this.conexionStatus = false;
         this.client = new whatsapp_web_js_1.Client({
             puppeteer: {
-                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                args: [
+                    '--start-maximized',
+                    '--disable-gpu',
+                    '--disable-dev-shm-usage',
+                    '--disable-setuid-sandbox',
+                    '--no-first-run',
+                    '--no-sandbox',
+                    '--no-zygote',
+                    '--single-process',
+                ],
             },
             authStrategy: new whatsapp_web_js_1.LocalAuth(),
         });

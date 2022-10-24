@@ -6,7 +6,16 @@ class Whatsapp {
   private conexionStatus: boolean = false;
   private client: Client = new Client({
     puppeteer: {
-      args: ['--no-sandbox'],
+      args: [
+        '--start-maximized',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-setuid-sandbox',
+        '--no-first-run',
+        '--no-sandbox',
+        '--no-zygote',
+        '--single-process',
+      ],
     },
     authStrategy: new LocalAuth(),
   });
@@ -16,7 +25,9 @@ class Whatsapp {
       if (this.conexionStatus) {
         resolve();
       }
+      console.log('Inciando whats');
       this.client.initialize();
+      console.log('Se incio whats');
       this.client.on('qr', (qr) => {
         qrcode.generate(qr, { small: true });
       });
