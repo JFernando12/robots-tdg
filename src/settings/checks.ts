@@ -5,7 +5,6 @@ import {
 } from '../interfaces/ValueChecks';
 
 const isTrueOrFalse = (status: string, keyWord: string): boolean => {
-  console.log(status, keyWord);
   if (status === keyWord) {
     return true;
   } else {

@@ -1,4 +1,4 @@
-enum PosGuide {
+export enum PosGuide {
   noteOrder = 7,
   guideSentEmail = 6,
   guideSentWhatsapp = 5,

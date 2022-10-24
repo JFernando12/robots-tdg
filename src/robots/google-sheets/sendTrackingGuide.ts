@@ -2,7 +2,8 @@ import { ValueInputOption } from '../../interfaces/ValueInputOption';
 import { currentSheet } from '../../settings/currentSheet';
 import { isGuideCreated, isGuideSentWhatsapp } from '../../settings/checks';
 import { ValuesGuideSentWhatsapp } from '../../interfaces/ValueChecks';
-
+import { whatsappClient } from '../../helpers/whatsapp/Whatsapp';
+import { PosGuide } from '../../interfaces/PositionsGuide';
 const getData = async () => {
   let data = await currentSheet.get({
     nombre: 'prueba',
@@ -19,9 +20,10 @@ const getData = async () => {
 
 const sendTrackingGuide = async () => {
   let data = await getData();
+  await whatsappClient.start();
 
   let i = 0;
-  while (5 > i) {
+  while (4 > i) {
     let order = data![i];
     let noteOrder = order[PosGuide.noteOrder];
     let guideSentEmail = order[PosGuide.guideSentEmail];
@@ -35,6 +37,7 @@ const sendTrackingGuide = async () => {
     const acumNotes = '';
     try {
       if (!isGuideSentWhatsapp(guideSentWhatsapp)) {
+        await whatsappClient.sendMessage(whatsapp, guide);
         order[PosGuide.guideSentWhatsapp] = ValuesGuideSentWhatsapp.true;
       }
     } catch (error) {
@@ -62,6 +65,8 @@ const sendTrackingGuide = async () => {
     listSent,
     ValueInputOption.USER_ENTERED
   );
+
+  await whatsappClient.stop();
 };
 
 export { sendTrackingGuide };

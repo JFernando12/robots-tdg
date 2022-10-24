@@ -1,4 +1,3 @@
-import { sendTrackingGuide } from "./robots/google-sheets/sendTrackingGuide";
-import whatsapp from "./helpers/whatsapp/Whatsapp";
+import { sendTrackingGuide } from './robots/google-sheets/sendTrackingGuide';
 
-// sendTrackingGuide().then(console.log).catch(console.log);
+sendTrackingGuide().then(console.log).catch(console.log);
