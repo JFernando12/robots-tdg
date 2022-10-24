@@ -6,7 +6,7 @@ class Whatsapp {
   private conexionStatus: boolean = false;
   private client: Client = new Client({
     puppeteer: {
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ['--no-sandbox'],
     },
     authStrategy: new LocalAuth(),
   });
