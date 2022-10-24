@@ -1,5 +1,6 @@
 import { Client, ClientSession, LocalAuth } from 'whatsapp-web.js';
 import qrcode from 'qrcode-terminal';
+import { numberValidation } from './numberValidation';
 
 class Whatsapp {
   private conexionStatus: boolean = false;
@@ -21,7 +22,7 @@ class Whatsapp {
       });
       this.client.on('ready', () => {
         this.conexionStatus = true;
-        console.log('Client is ready!');
+        console.log('Whatsapp is ready!');
         resolve();
       });
       this.client.on('auth_failure', () => {
@@ -34,8 +35,11 @@ class Whatsapp {
     return new Promise((resolve, reject) => {
       const stopConnection = async () => {
         try {
-          await this.client.destroy();
-          this.conexionStatus = false;
+          if (this.conexionStatus) {
+            await this.client.destroy();
+            this.conexionStatus = false;
+            console.log('WhatsApp closed!');
+          }
           resolve();
         } catch (error) {
           reject('No se pudo cerra la sesion correctamente');
@@ -49,7 +53,11 @@ class Whatsapp {
     if (!this.conexionStatus) {
       throw new Error('No hay conexion y no se puede enviar mensaje');
     }
+
+    numberValidation(phoneNumber);
+
     await this.client.sendMessage(`521${phoneNumber}@c.us`, message);
+    console.log(`Message sent to: ${phoneNumber}`);
   }
 }
 

@@ -116,6 +116,8 @@ export class Sheets {
         },
       });
 
+      console.log('Sheet updated');
+
       //@ts-ignore
       return res.data;
     } catch (error) {
