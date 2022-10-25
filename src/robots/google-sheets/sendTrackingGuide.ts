@@ -1,13 +1,13 @@
 import { ValueInputOption } from '../../interfaces/ValueInputOption';
-import { currentSheet } from '../../settings/currentSheet';
 import { isGuideCreated, isGuideSentWhatsapp } from '../../settings/checks';
 import { ValuesGuideSentWhatsapp } from '../../interfaces/ValueChecks';
 import { whatsappClient } from '../../helpers/whatsapp/Whatsapp';
 import { PosGuide } from '../../interfaces/PositionsGuide';
-import { numberValidation } from '../../helpers/whatsapp/numberValidation';
 import { addNote } from '../../helpers/google-sheets/addNote';
 import { alertWhatsapp } from '../../helpers/whatsapp/alertWhatsapp';
-const getData = async (): Promise<Array<Array<string>>> => {
+import { Sheets } from '../../helpers/google-sheets/Sheets';
+
+const getData = async (currentSheet: Sheets): Promise<Array<Array<string>>> => {
   let data = await currentSheet.get({
     nombre: 'prueba',
     celdaInicio: 'A2',
@@ -30,11 +30,11 @@ const notSentWhatsapp = (
   return data;
 };
 
-const sendTrackingGuide = async () => {
+const sendTrackingGuide = async (currentSheet: Sheets) => {
   try {
     await whatsappClient.start();
 
-    let data = await getData();
+    let data = await getData(currentSheet);
     if (!data) {
       throw new Error('No hay data disponible');
     }

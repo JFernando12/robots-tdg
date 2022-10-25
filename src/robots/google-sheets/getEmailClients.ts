@@ -1,6 +1,6 @@
-import { currentSheet } from '../../settings/currentSheet';
+import { Sheets } from '../../helpers/google-sheets/Sheets';
 
-const getEmailClients = async () => {
+const getEmailClients = async (currentSheet: Sheets) => {
   let emails = await currentSheet.get({
     nombre: 'General',
     celdaInicio: 'AF2',
