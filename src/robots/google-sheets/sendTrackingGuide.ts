@@ -6,10 +6,13 @@ import { PosGuide } from '../../interfaces/PositionsGuide';
 import { addNote } from '../../helpers/google-sheets/addNote';
 import { alertWhatsapp } from '../../helpers/whatsapp/alertWhatsapp';
 import { Sheets } from '../../helpers/google-sheets/Sheets';
+import { TabsName } from '../../interfaces/TabsName';
+
+const tabName = TabsName.guides;
 
 const getData = async (currentSheet: Sheets): Promise<Array<Array<string>>> => {
   let data = await currentSheet.get({
-    nombre: 'prueba',
+    nombre: tabName,
     celdaInicio: 'A2',
     celdaFinal: 'H1000',
   });
@@ -87,7 +90,7 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
     if (dataWhatsapp.length > 0) {
       await currentSheet.update(
         {
-          nombre: 'prueba',
+          nombre: tabName,
           celdaInicio: 'F2',
         },
         listSent,
@@ -95,7 +98,7 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
       );
     }
 
-    await whatsappClient.sendMessage('7551005114', 'Guides sent correctly');
+    await alertWhatsapp('Guides sent correctly');
   } catch (error) {
     await alertWhatsapp(`Sending guides: ${(error as Error).message}`);
   }
