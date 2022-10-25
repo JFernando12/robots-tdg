@@ -1,4 +1,6 @@
 export const addNote = (note: string, newNote: string): string => {
-  note = note + ' | ' + newNote;
+  if (!note.includes(newNote)) {
+    note = note + ' | ' + newNote;
+  }
   return note;
 };
