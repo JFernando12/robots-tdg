@@ -71,8 +71,6 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
       i++;
     }
 
-    console.log(dataWhatsapp);
-
     // Actualizando data comparando con dataWhatsapp
     dataWhatsapp.map((orderWhats) => {
       const orderId = data?.findIndex(
