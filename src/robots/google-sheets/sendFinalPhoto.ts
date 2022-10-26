@@ -2,14 +2,14 @@ import { ValueInputOption } from '../../interfaces/ValueInputOption';
 import { isCreated, isSentWhatsapp } from '../../settings/checks';
 import { ValuesSentWhatsapp } from '../../interfaces/ValueChecks';
 import { whatsappClient } from '../../helpers/whatsapp/Whatsapp';
-import { PosGuide } from '../../interfaces/Positions';
+import { PosFinalPhoto } from '../../interfaces/Positions';
 import { addNote } from '../../helpers/google-sheets/addNote';
 import { alertWhatsapp } from '../../helpers/whatsapp/alertWhatsapp';
 import { Sheets } from '../../helpers/google-sheets/Sheets';
 import { TabsName } from '../../interfaces/TabsName';
-import { templateGuide } from '../../templates/templateGuide';
+import { templateFinalPhoto } from '../../templates/templateFinalPhoto';
 
-const tabName = TabsName.guides;
+const tabName = TabsName.finalPhotos;
 const celdaInicioGet = 'A2';
 const celdaIncioUpdate = 'F2';
 const celdaFinal = 'H1000';
@@ -32,12 +32,12 @@ const notSentWhatsapp = (
   data: Array<Array<string>>
 ): Array<Array<string>> | [] => {
   data = data
-    .filter((order) => isCreated(order[PosGuide.guideCreated]))
-    .filter((order) => !isSentWhatsapp(order[PosGuide.guideSentWhatsapp]));
+    .filter((order) => isCreated(order[PosFinalPhoto.photoCreated]))
+    .filter((order) => !isSentWhatsapp(order[PosFinalPhoto.photoSentWhatsapp]));
   return data;
 };
 
-const sendTrackingGuide = async (currentSheet: Sheets) => {
+const sendFinalPhoto = async (currentSheet: Sheets) => {
   try {
     let data = await getData(currentSheet);
     if (!data) {
@@ -49,22 +49,22 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
     let i = 0;
     while (dataWhatsapp.length > i) {
       let order = dataWhatsapp[i];
-      const orderId = order[PosGuide.orderId];
-      let noteOrder = order[PosGuide.noteOrder];
-      const guide = order[PosGuide.guide];
-      const whatsapp = order[PosGuide.whatsapp];
+      const orderId = order[PosFinalPhoto.orderId];
+      let noteOrder = order[PosFinalPhoto.noteOrder];
+      const photo = order[PosFinalPhoto.photo];
+      const whatsapp = order[PosFinalPhoto.whatsapp];
 
       try {
-        await whatsappClient.sendMessage(whatsapp, templateGuide(guide));
-        order[PosGuide.guideSentWhatsapp] = ValuesSentWhatsapp.true;
+        await whatsappClient.sendMessage(whatsapp, templateFinalPhoto(photo));
+        order[PosFinalPhoto.photoSentWhatsapp] = ValuesSentWhatsapp.true;
       } catch (error) {
         console.log(`Order ${orderId}: `, (error as Error).message);
-        order[PosGuide.noteOrder] = addNote(
+        order[PosFinalPhoto.noteOrder] = addNote(
           noteOrder,
           (error as Error).message
         );
         alertWhatsapp(
-          `Sending guides: order ${orderId}, ${(error as Error).message}.`
+          `Sending finalPhoto: order ${orderId}, ${(error as Error).message}.`
         );
       }
       dataWhatsapp[i] = order;
@@ -76,18 +76,20 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
     // Actualizando data comparando con dataWhatsapp
     dataWhatsapp.map((orderWhats) => {
       const orderId = data?.findIndex(
-        (order) => order[PosGuide.orderId] === orderWhats[PosGuide.orderId]
+        (order) =>
+          order[PosFinalPhoto.orderId] === orderWhats[PosFinalPhoto.orderId]
       );
-      data[orderId][PosGuide.guideSentWhatsapp] =
-        orderWhats[PosGuide.guideSentWhatsapp];
-      data[orderId][PosGuide.noteOrder] = orderWhats[PosGuide.noteOrder];
+      data[orderId][PosFinalPhoto.photoSentWhatsapp] =
+        orderWhats[PosFinalPhoto.photoSentWhatsapp];
+      data[orderId][PosFinalPhoto.noteOrder] =
+        orderWhats[PosFinalPhoto.noteOrder];
     });
 
     // Preparando informacion que se va a mandar a Sheet
     const listSent = data?.map((order) => [
-      order[PosGuide.guideSentWhatsapp],
-      order[PosGuide.guideSentEmail],
-      order[PosGuide.noteOrder],
+      order[PosFinalPhoto.photoSentWhatsapp],
+      order[PosFinalPhoto.photoSentEmail],
+      order[PosFinalPhoto.noteOrder],
     ]);
 
     // Updating sheet
@@ -102,11 +104,10 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
       );
     }
 
-    await alertWhatsapp('Guides sent correctly');
+    await alertWhatsapp('FinalPhoto sent correctly');
   } catch (error) {
-    await alertWhatsapp(`Sending guides: ${(error as Error).message}`);
-    console.log(error);
+    await alertWhatsapp(`Sending finalPhotos: ${(error as Error).message}`);
   }
 };
 
-export { sendTrackingGuide };
+export { sendFinalPhoto };

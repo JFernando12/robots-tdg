@@ -2,14 +2,14 @@ import { ValueInputOption } from '../../interfaces/ValueInputOption';
 import { isCreated, isSentWhatsapp } from '../../settings/checks';
 import { ValuesSentWhatsapp } from '../../interfaces/ValueChecks';
 import { whatsappClient } from '../../helpers/whatsapp/Whatsapp';
-import { PosGuide } from '../../interfaces/Positions';
+import { PosReview } from '../../interfaces/Positions';
 import { addNote } from '../../helpers/google-sheets/addNote';
 import { alertWhatsapp } from '../../helpers/whatsapp/alertWhatsapp';
 import { Sheets } from '../../helpers/google-sheets/Sheets';
 import { TabsName } from '../../interfaces/TabsName';
-import { templateGuide } from '../../templates/templateGuide';
+import { templateReview } from '../../templates/templateReview';
 
-const tabName = TabsName.guides;
+const tabName = TabsName.reviews;
 const celdaInicioGet = 'A2';
 const celdaIncioUpdate = 'F2';
 const celdaFinal = 'H1000';
@@ -32,12 +32,12 @@ const notSentWhatsapp = (
   data: Array<Array<string>>
 ): Array<Array<string>> | [] => {
   data = data
-    .filter((order) => isCreated(order[PosGuide.guideCreated]))
-    .filter((order) => !isSentWhatsapp(order[PosGuide.guideSentWhatsapp]));
+    .filter((order) => isCreated(order[PosReview.reviewCreated]))
+    .filter((order) => !isSentWhatsapp(order[PosReview.reviewSentWhatsapp]));
   return data;
 };
 
-const sendTrackingGuide = async (currentSheet: Sheets) => {
+const sendReview = async (currentSheet: Sheets) => {
   try {
     let data = await getData(currentSheet);
     if (!data) {
@@ -49,22 +49,22 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
     let i = 0;
     while (dataWhatsapp.length > i) {
       let order = dataWhatsapp[i];
-      const orderId = order[PosGuide.orderId];
-      let noteOrder = order[PosGuide.noteOrder];
-      const guide = order[PosGuide.guide];
-      const whatsapp = order[PosGuide.whatsapp];
+      const orderId = order[PosReview.orderId];
+      let noteOrder = order[PosReview.noteOrder];
+      const review = order[PosReview.review];
+      const whatsapp = order[PosReview.whatsapp];
 
       try {
-        await whatsappClient.sendMessage(whatsapp, templateGuide(guide));
-        order[PosGuide.guideSentWhatsapp] = ValuesSentWhatsapp.true;
+        await whatsappClient.sendMessage(whatsapp, templateReview(review));
+        order[PosReview.reviewSentWhatsapp] = ValuesSentWhatsapp.true;
       } catch (error) {
         console.log(`Order ${orderId}: `, (error as Error).message);
-        order[PosGuide.noteOrder] = addNote(
+        order[PosReview.noteOrder] = addNote(
           noteOrder,
           (error as Error).message
         );
         alertWhatsapp(
-          `Sending guides: order ${orderId}, ${(error as Error).message}.`
+          `Sending reviews: order ${orderId}, ${(error as Error).message}.`
         );
       }
       dataWhatsapp[i] = order;
@@ -76,18 +76,18 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
     // Actualizando data comparando con dataWhatsapp
     dataWhatsapp.map((orderWhats) => {
       const orderId = data?.findIndex(
-        (order) => order[PosGuide.orderId] === orderWhats[PosGuide.orderId]
+        (order) => order[PosReview.orderId] === orderWhats[PosReview.orderId]
       );
-      data[orderId][PosGuide.guideSentWhatsapp] =
-        orderWhats[PosGuide.guideSentWhatsapp];
-      data[orderId][PosGuide.noteOrder] = orderWhats[PosGuide.noteOrder];
+      data[orderId][PosReview.reviewSentWhatsapp] =
+        orderWhats[PosReview.reviewSentWhatsapp];
+      data[orderId][PosReview.noteOrder] = orderWhats[PosReview.noteOrder];
     });
 
     // Preparando informacion que se va a mandar a Sheet
     const listSent = data?.map((order) => [
-      order[PosGuide.guideSentWhatsapp],
-      order[PosGuide.guideSentEmail],
-      order[PosGuide.noteOrder],
+      order[PosReview.reviewSentWhatsapp],
+      order[PosReview.reviewSentEmail],
+      order[PosReview.noteOrder],
     ]);
 
     // Updating sheet
@@ -102,11 +102,10 @@ const sendTrackingGuide = async (currentSheet: Sheets) => {
       );
     }
 
-    await alertWhatsapp('Guides sent correctly');
+    await alertWhatsapp('Reviews sent correctly');
   } catch (error) {
-    await alertWhatsapp(`Sending guides: ${(error as Error).message}`);
-    console.log(error);
+    await alertWhatsapp(`Sending reviews: ${(error as Error).message}`);
   }
 };
 
-export { sendTrackingGuide };
+export { sendReview };

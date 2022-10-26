@@ -1,14 +1,14 @@
-export enum ValuesGuideSentEmail {
+export enum ValuesSentEmail {
   true = 'TRUE',
   false = 'FALSE',
 }
 
-export enum ValuesGuideSentWhatsapp {
+export enum ValuesSentWhatsapp {
   true = 'TRUE',
   false = 'FALSE',
 }
 
-export enum ValuesGuideCreated {
-  true = 'Elaborada',
-  false = 'Pendiente',
+export enum ValuesCreated {
+  true = 'TRUE',
+  false = 'FALSE',
 }

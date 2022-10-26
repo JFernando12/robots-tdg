@@ -1,7 +1,7 @@
 import {
-  ValuesGuideCreated,
-  ValuesGuideSentEmail,
-  ValuesGuideSentWhatsapp,
+  ValuesCreated,
+  ValuesSentEmail,
+  ValuesSentWhatsapp,
 } from '../interfaces/ValueChecks';
 
 const isTrueOrFalse = (status: string, keyWord: string): boolean => {
@@ -12,14 +12,14 @@ const isTrueOrFalse = (status: string, keyWord: string): boolean => {
   }
 };
 
-export const isGuideSentWhatsapp = (status: string): boolean => {
-  return isTrueOrFalse(status, ValuesGuideSentWhatsapp.true);
+export const isSentWhatsapp = (status: string): boolean => {
+  return isTrueOrFalse(status, ValuesSentWhatsapp.true);
 };
 
-export const isGuideSentEmail = (status: string): boolean => {
-  return isTrueOrFalse(status, ValuesGuideSentEmail.true);
+export const isSentEmail = (status: string): boolean => {
+  return isTrueOrFalse(status, ValuesSentEmail.true);
 };
 
-export const isGuideCreated = (status: string): boolean => {
-  return isTrueOrFalse(status, ValuesGuideCreated.true);
+export const isCreated = (status: string): boolean => {
+  return isTrueOrFalse(status, ValuesCreated.true);
 };

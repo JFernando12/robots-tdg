@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "node index.js",
-    "whats": "ts-node-dev src/helpers/whatsapp/Whatsapp.ts"
+    "whats": "ts-node-dev src/helpers/whatsapp/Whatsapp.ts",
+    "local-start": "node build/index.js"
   },
   "author": "Fernando Castrejón <fernandocastrejonh@gmail.com>",
   "license": "MIT",
