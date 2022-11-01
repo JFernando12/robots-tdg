@@ -7,14 +7,14 @@ class Whatsapp {
   private client: Client = new Client({
     puppeteer: {
       args: [
-        '--start-maximized',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--disable-setuid-sandbox',
-        '--no-first-run',
+        // '--start-maximized',
+        // '--disable-gpu',
+        // '--disable-dev-shm-usage',
+        // '--disable-setuid-sandbox',
+        // '--no-first-run',
         '--no-sandbox',
-        '--no-zygote',
-        '--single-process',
+        // '--no-zygote',
+        // '--single-process',
       ],
     },
     authStrategy: new LocalAuth(),

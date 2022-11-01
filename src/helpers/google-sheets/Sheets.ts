@@ -83,6 +83,7 @@ export class Sheets {
       });
       return res.data.values;
     } catch (error) {
+      console.log(error);
       throw new Error(`Unable to parse range: ${rangeSpreadsheet}`);
     }
   }
@@ -121,6 +122,7 @@ export class Sheets {
       //@ts-ignore
       return res.data;
     } catch (error) {
+      console.log(error);
       throw new Error(`Unable to parse range: ${rangeSpreadsheet}`);
     }
   }
