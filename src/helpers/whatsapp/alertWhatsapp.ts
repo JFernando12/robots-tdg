@@ -1,6 +1,6 @@
 import { whatsappClient } from './Whatsapp';
 
-const phoneNumbers = ['7551005114'];
+const phoneNumbers = ['7551005114', '7551155510', '7551175038'];
 
 export const alertWhatsapp = async (message: string) => {
   let i = 0;

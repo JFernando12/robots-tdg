@@ -19,6 +19,5 @@ ENV TZ America/Mexico_City
 COPY ./build $dir
 COPY credentials.json $dir
 COPY token.json $dir
-COPY .wwebjs_auth $dir
 
 CMD ["npm", "run", "start", "/bin/sh"]
