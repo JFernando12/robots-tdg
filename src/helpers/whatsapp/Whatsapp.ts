@@ -5,18 +5,18 @@ import { numberValidation } from './numberValidation';
 class Whatsapp {
   private conexionStatus: boolean = false;
   private client: Client = new Client({
-    puppeteer: {
-      args: [
-        // '--start-maximized',
-        // '--disable-gpu',
-        // '--disable-dev-shm-usage',
-        // '--disable-setuid-sandbox',
-        // '--no-first-run',
-        '--no-sandbox',
-        // '--no-zygote',
-        // '--single-process',
-      ],
-    },
+    // puppeteer: {
+    //   args: [
+    //     // '--start-maximized',
+    //     // '--disable-gpu',
+    //     // '--disable-dev-shm-usage',
+    //     // '--disable-setuid-sandbox',
+    //     // '--no-first-run',
+    //     // '--no-sandbox',
+    //     // '--no-zygote',
+    //     // '--single-process',
+    //   ],
+    // },
     authStrategy: new LocalAuth(),
   });
 
